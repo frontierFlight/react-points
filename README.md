@@ -17,3 +17,26 @@
 
 ## useEffect
 用来取代componentDidMount 和 componentDidUpdate 进行一些副作用的操作、数据请求和访问dom
+
+
+## createContext
+
+
+## 受控组件和非受控组件
+[ahooks 的 useControllableValue](https://ahooks.js.org/hooks/use-controllable-value)
+
+[ahooks 的 useControllableValue源码](https://github.com/alibaba/hooks/blob/master/packages/hooks/src/useControllableValue/index.ts)
+
+[如何实现受控组件和非受控组件双模式](https://zhuanlan.zhihu.com/p/536322574)
+
+受控组件：组件内部的状态由父组件传入实现控制。
+
+非受控组件：组件内部的状态由组件自己维护。在业务性组件中会明确是受控组件或者非受控组件。但是对于组件库来说会有很多组件需要两种模式都支持，比如输入类、切换、展开收起的组件。
+
+组件支持双模式的实现思路是让组件内部维护一个状态，当处于受控模式时，手动同步组件内部状态和父组件的状态。useControllableValue内部实现主要是通过useRef+强制更新（数据存储+setState({})强制刷新）
+
+![受控组件和非受控组件](./public//受控组件和非受控组件.jpg)
+
+
+## react 的 keep-alive 实现
+方案一：Portal将节点存储在内存中（createElement）
